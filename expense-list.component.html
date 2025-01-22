@@ -1,0 +1,23 @@
+<h2>Expense List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Amount</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of expenses">
+      <td>{{ expense.title }}</td>
+      <td>{{ expense.amount }}</td>
+      <td>{{ expense.category }}</td>
+      <td>{{ expense.date }}</td>
+      <td>
+        <button (click)="deleteExpense(expense.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

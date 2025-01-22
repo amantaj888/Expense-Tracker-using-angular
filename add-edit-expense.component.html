@@ -1,0 +1,69 @@
+<div class="add-edit-expense">
+    <h2>{{ isEditMode ? 'Edit Expense' : 'Add Expense' }}</h2>
+    <form (ngSubmit)="submitExpense()" #expenseForm="ngForm">
+      <label>
+        Title:
+        <input
+          type="text"
+          [(ngModel)]="expense.title"
+          name="title"
+          required
+          minlength="3"
+          #titleInput="ngModel"
+        />
+      </label>
+      <div *ngIf="titleInput.invalid && titleInput.touched">
+        <small *ngIf="titleInput.errors?.required">Title is required.</small>
+        <small *ngIf="titleInput.errors?.minlength">Minimum 3 characters.</small>
+      </div>
+  
+      <label>
+        Amount:
+        <input
+          type="number"
+          [(ngModel)]="expense.amount"
+          name="amount"
+          required
+          min="1"
+          #amountInput="ngModel"
+        />
+      </label>
+      <div *ngIf="amountInput.invalid && amountInput.touched">
+        <small *ngIf="amountInput.errors?.required">Amount is required.</small>
+        <small *ngIf="amountInput.errors?.min">Amount must be greater than 0.</small>
+      </div>
+  
+      <label>
+        Category:
+        <input
+          type="text"
+          [(ngModel)]="expense.category"
+          name="category"
+          required
+          #categoryInput="ngModel"
+        />
+      </label>
+      <div *ngIf="categoryInput.invalid && categoryInput.touched">
+        <small *ngIf="categoryInput.errors?.required">Category is required.</small>
+      </div>
+  
+      <label>
+        Date:
+        <input
+          type="date"
+          [(ngModel)]="expense.date"
+          name="date"
+          required
+          #dateInput="ngModel"
+        />
+      </label>
+      <div *ngIf="dateInput.invalid && dateInput.touched">
+        <small *ngIf="dateInput.errors?.required">Date is required.</small>
+      </div>
+  
+      <button type="submit" [disabled]="expenseForm.invalid">
+        {{ isEditMode ? 'Update Expense' : 'Add Expense' }}
+      </button>
+    </form>
+  </div>
+  
